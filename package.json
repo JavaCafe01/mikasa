@@ -1,0 +1,15 @@
+{
+    "name": "mikasa",
+    "version": "1.0.0",
+    "description": "a discord bot for my friends' server",
+    "main": "index.js",
+    "author": "Gokul Swaminathan",
+    "license": "None",
+    "dependencies": {
+        "discord.js": "^12.5.1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/JavaCafe01/mikasa.git"
+    }
+}
