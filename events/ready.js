@@ -6,6 +6,15 @@ module.exports = {
     execute(client) {
         const startup_time = Date.now() - init_time;
         console.log(`Logged in as ${client.user.tag}, and started up in ${startup_time}ms!\n`);
+
+        client.user.setPresence({
+            status: 'online',
+            activity: {
+                name: "for titans",
+                type: "WATCHING"
+            }
+        });
+
     },
 };
 
