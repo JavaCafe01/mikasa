@@ -4,7 +4,10 @@
     "description": "a discord bot for my friends' server",
     "main": "index.js",
     "author": "Gokul Swaminathan",
-    "license": "None",
+    "license": "MIT",
+    "scripts": {
+        "start": "node ."
+    },
     "dependencies": {
         "discord.js": "^12.5.1"
     },

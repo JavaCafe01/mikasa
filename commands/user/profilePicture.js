@@ -3,31 +3,18 @@ const Discord = require('discord.js');
 
 function getEmbed(author, member) {
 
-    const months = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
-
-
-    const createdDate = author.createdAt
-    const joinedDate = member.joinedAt
-
     const embed = new Discord.MessageEmbed()
         .setAuthor(`${author.tag}`)
-        .setThumbnail(author.displayAvatarURL({ format: "webp", dynamic: true }))
+        .setImage(author.displayAvatarURL({ format: "png", dynamic: true , size: 4096}))
         .setColor(member.displayHexColor)
-        .addField("**ID/Snowflake**", author.id)
-        .addField("**Created Date**", `${months[createdDate.getMonth()]} ${createdDate.getDate()}, ${createdDate.getFullYear()}`)
-        .addField("**Joined Date**", `${months[joinedDate.getMonth()]} ${joinedDate.getDate()}, ${joinedDate.getFullYear()}`)
-        .addField("**Roles**", member.roles.cache.map(r => `${r}`).join(', '), true)
         .setTimestamp()
-
     return embed
 }
 
 module.exports = {
-    name: 'info',
-    description: 'Get a user\'s info',
-    aliases: ['id'],
+    name: 'pfp',
+    description: 'Get a user\'s profile picture',
+    aliases: ['pic', 'profile'],
     usage: '[user nickname]',
     cooldown: 5,
     execute(message, args) {
@@ -47,7 +34,6 @@ module.exports = {
 
             message.guild.members.fetch().then(r => {
                 r.each(m => {
-
                     if(nick.toLowerCase() === m.user.username.toLowerCase()) {
                         found = true;
                         return message.channel.send(getEmbed(m.user, m));

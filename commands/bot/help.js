@@ -20,7 +20,7 @@ module.exports = {
                 .setColor(message.member.displayHexColor)
                 .addField("**Help** ❓", data)
                 .setTimestamp()
-                .setFooter(`|   ${message.author.username}`,  message.author.displayAvatarURL({ format: "png", dynamic: true }));
+                .setFooter(`${message.author.username}`,  message.author.displayAvatarURL({ format: "png", dynamic: true }));
 
             return message.channel.send(embed);
         }
@@ -42,7 +42,7 @@ module.exports = {
             .setColor(message.member.displayHexColor)
             .addField("**Command** ❓", data)
             .setTimestamp()
-            .setFooter(`|  ${message.author.username}`,  message.author.displayAvatarURL({ format: "png", dynamic: true }));
+            .setFooter(`${message.author.username}`,  message.author.displayAvatarURL({ format: "png", dynamic: true }));
 
         message.channel.send(embed);
 
