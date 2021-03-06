@@ -10,4 +10,4 @@ RUN npm install
 
 COPY . /usr/src/bot
 
-CMD ["node", "start"]
+CMD ["yarn", "start"]
