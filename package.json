@@ -6,8 +6,7 @@
     "author": "Gokul Swaminathan",
     "license": "MIT",
     "scripts": {
-        "start": "node ."
-    },
+    "start": "node ."},
     "dependencies": {
         "discord.js": "^12.5.1"
     },
