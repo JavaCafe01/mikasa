@@ -11,6 +11,9 @@ module.exports = {
         const data = [];
         const { commands } = message.client;
 
+        var emojilist = message.guild.emojis.cache.map(e => e.id);
+        var index = Math.floor(Math.random() * emojilist.length);
+
         if (!args.length) {
             data.push('Here\'s a list of all my commands:');
             data.push(commands.map(command => command.name).join(', '));
@@ -20,10 +23,11 @@ module.exports = {
                 .setColor(message.member.displayHexColor)
                 .addField("**Help** ❓", data)
                 .setTimestamp()
-                .setFooter(`${message.author.username}`,  message.author.displayAvatarURL({ format: "png", dynamic: true }));
+                .setFooter(`\u200B`, `https://cdn.discordapp.com/emojis/${emojilist[index]}.png`);
 
             return message.channel.send(embed);
         }
+
         const name = args[0].toLowerCase();
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
 
@@ -42,9 +46,8 @@ module.exports = {
             .setColor(message.member.displayHexColor)
             .addField("**Command** ❓", data)
             .setTimestamp()
-            .setFooter(`${message.author.username}`,  message.author.displayAvatarURL({ format: "png", dynamic: true }));
+            .setFooter(`\u200B`, `https://cdn.discordapp.com/emojis/${emojilist[index]}.png`);
 
         message.channel.send(embed);
-
     },
 };

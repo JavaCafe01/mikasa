@@ -1,15 +1,16 @@
 const Discord = require('discord.js');
+const message = require('../../events/message');
 
 
-function getEmbed(author, member) {
+function getEmbed(author, member, emoji_id) {
 
     const months = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
 
 
-    const createdDate = author.createdAt
-    const joinedDate = member.joinedAt
+    const createdDate = author.createdAt;
+    const joinedDate = member.joinedAt;
 
     const embed = new Discord.MessageEmbed()
         .setAuthor(`${author.tag}`)
@@ -19,7 +20,8 @@ function getEmbed(author, member) {
         .addField("**Created Date**", `${months[createdDate.getMonth()]} ${createdDate.getDate()}, ${createdDate.getFullYear()}`)
         .addField("**Joined Date**", `${months[joinedDate.getMonth()]} ${joinedDate.getDate()}, ${joinedDate.getFullYear()}`)
         .addField("**Roles**", member.roles.cache.map(r => `${r}`).join(', '), true)
-        .setTimestamp()
+        .setFooter(`\u200B`, `https://cdn.discordapp.com/emojis/${emoji_id}.png`)
+        .setTimestamp();
 
     return embed
 }
@@ -32,12 +34,16 @@ module.exports = {
     cooldown: 5,
     execute(message, args) {
         var found = false;
+
+        var emojilist = message.guild.emojis.cache.map(e => e.id);
+        var index = Math.floor(Math.random() * emojilist.length);
+
         if (!args.length) {
-            return message.channel.send(getEmbed(message.author, message.member));
+            return message.channel.send(getEmbed(message.author, message.member, emojilist[index]));
         }
         else if(message.mentions.users.size) {
             const taggedUser = message.mentions;
-            return message.channel.send(getEmbed(taggedUser.users.first(), taggedUser.members.first()));
+            return message.channel.send(getEmbed(taggedUser.users.first(), taggedUser.members.first(), emojilist[index]));
         }
         else {
             const nick = args[0];
@@ -50,7 +56,7 @@ module.exports = {
 
                     if(nick.toLowerCase() === m.user.username.toLowerCase()) {
                         found = true;
-                        return message.channel.send(getEmbed(m.user, m));
+                        return message.channel.send(getEmbed(m.user, m, emojilist[index]));
                     }
                 });
 

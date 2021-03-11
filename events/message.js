@@ -4,9 +4,13 @@ module.exports = {
     name: 'message',
     execute(message, client) {
 
-        if(message.content.toLowerCase().includes('gokul'))
+        if(message.content.toLowerCase().includes('gokul')) {
+
             message.react(`👞`);
 
+
+           
+        }
         if(message.content.toLowerCase().includes('mikasa'))
             message.react(`816360448412614707`);
 
